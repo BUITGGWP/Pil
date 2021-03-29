@@ -60,6 +60,10 @@ def draw_line(x1, y1, x2, y2, new_image, color=(0, 0, 0)):
     deltax = abs(x1 - x2)
     draw = ImageDraw.Draw(new_image)
     lenght = max([deltax, deltay])
+    if y1 < y2:
+        deltay = abs(y2 - y1)
+    if x1 < x2:
+        deltax = abs(x2 - x1)
     dx = deltax / lenght
     dy = deltay / lenght
     x = x1
@@ -70,9 +74,15 @@ def draw_line(x1, y1, x2, y2, new_image, color=(0, 0, 0)):
         y += dy
         lenght -= 1
 
-new_image = Image.new("RGB", (1000, 1000), (255, 255, 255))
+
+def draw_square(x1, y1, lenht, new_image, color=(0, 0, 0)):
+    rectangle(x1, y1, lenht, lenht, new_image, color)
+
+
+
+new_image = Image.new("RGB", (500, 500), (255, 255, 255))
 #line_vert(5, 50, 100, new_image)
 #rectangle2(100, 100, 50, 50, new_image)
 #vert_dio([2, 5, 3, 7, 9 ,8 ,6], new_image)
-draw_line(1, 2, 170, 259, new_image)
+draw_square(100, 100, 10, new_image)
 new_image.save('test.png', 'PNG')
